@@ -14,6 +14,10 @@ import { environment } from 'src/environments/environment';
 import { AuthHttpInterceptor,AuthModule } from '@auth0/auth0-angular';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
+import { employeeComponent } from './employee/employee.component';
+import { EmployeeRowComponent } from './employee/employee-row/employee-row.component';
+import { employeeListComponent } from './employee/employee-list/employee-list.component';
+import { EmployeeDetailsComponent } from './employee/employee-details/employee-details.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,10 @@ import { ProfileComponent } from './profile/profile.component';
     CarFormComponent,
     HomeComponent,
     ProfileComponent,
+    employeeComponent,
+    EmployeeRowComponent,
+    employeeListComponent,
+    EmployeeDetailsComponent,
     
   ],
   imports: [

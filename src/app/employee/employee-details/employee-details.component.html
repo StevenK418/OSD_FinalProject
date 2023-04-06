@@ -1,0 +1,18 @@
+<div class="employeed" style="width: 100%;">
+    <div class="employeed-header" ><h1>Employee Details: </h1></div>
+    <img *ngIf=employee.profilePicture src="{{employee.profilePicture}}" class="employeed-img-top img-fluid" alt="Image of {{employee.firstName}}">
+    <div class="employeed-body">
+        <h2 class="employeed-title">
+           {{employee.firstName}}
+           <p>Id: <small class="text-muted">{{employee._id}}</small></p>
+        </h2>
+        <ul>
+            <li><b>First Name: </b> {{employee.firstName}}</li>
+            <li><b>Last Name: </b> {{employee.lastName}}</li>
+            <li><b>Email: </b> {{employee.email}}</li>
+            <li><b>Phone NUmber: </b> {{employee.phoneNumber}}</li>
+            <li><b>Address: </b> {{employee.address}}</li>
+            <li><b>Status: </b> {{employee.status}}</li>
+        </ul>
+    </div>
+</div>
