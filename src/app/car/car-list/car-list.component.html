@@ -1,0 +1,52 @@
+<h1>
+    Cars
+    <p><small class="text-muted">All available vehicles</small></p>
+</h1>
+<div class="container-fluid">
+    <div class="row align-items-start">
+        <div class="col gx-5 mb-5">
+            <ol class="list-group-flush p-3">
+                <li class="list-group-item bg-dark text-white p-3 justify-content-between align-items-start"  aria-current="true">
+                    <app-car-row *ngFor="let c of carList"
+                    [car]="c"
+                    (click)='clicked(c)'
+                    [class.text-info]="isSelected(c)"
+                    ></app-car-row> 
+                </li>    
+            </ol>
+        </div>
+        <div class="col">
+            <div class="container-fluid">
+                <app-car-details *ngIf="currentCar" [car]="currentCar"></app-car-details>
+            </div>
+        </div>
+      </div>  
+    <div class="container-fluid my-3 bg-dark p-3 align-left">
+        <div class="row">
+            <div class="col col-2">
+                 <!-- Ceeate car button -->
+                <button (click)="openAddCar()" *ngIf="!showCarForm" 
+                class="btn btn-lg btn-primary">Add Car</button>
+            </div>
+            <div class="col col-2">
+                  <!-- Update car button -->
+                  <button (click)="openEditCar()" *ngIf="!showCarForm" [disabled]="!currentCar"
+                  class="btn btn-lg btn-primary">Edit Car</button>
+             </div>
+            <div class="col col-2">
+                 <!-- Delete car button -->
+                <button (click)="deleteCar()" *ngIf="!showCarForm" [disabled]="!currentCar"
+                class="btn btn-lg btn-danger">Delete Car</button>
+            </div>
+        </div>
+    </div>
+</div>
+<app-car-form *ngIf="showCarForm" [car]="currentCar" 
+    (carFormClose)="carFormClose($event)"
+    [car]="currentCar"></app-car-form>
+
+
+
+
+      
+

@@ -1,0 +1,27 @@
+<h1 class="visually-hidden">Heroes examples</h1>
+
+<div class="px-4 py-5 my-5 text-center">
+  <img class="d-block mx-auto mb-4 img-fluid rounded-circle border border-dark border-3" src="/assets/images/logo_black.png" width="210" height="210" alt="" >
+  <h1 class="display-5 fw-bold">Welcome to MyCarHireDB</h1>
+  <h2 class="text-muted">Your Car Hire Portal</h2>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">MyCarHireDB's portal allows you to Monitor, control and manage your entire fleet of vehicles, all from one, easy to access location.</p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <div *ngIf="!(isAuthenticated$ | async)">
+            <p>Please Login to continue</p>
+            <button type="button" *ngIf="!(isAuthenticated$ | async)" class="btn btn-primary col-12 px-3 me-2" 
+            (click)=handleLogin()>
+                Login
+            </button>
+        </div>
+        <div *ngIf="isAuthenticated$ | async">
+            <p *ngIf="user$ | async as user">Logged in as {{user.name}}</p>
+        
+            <button type="button" *ngIf="(isAuthenticated$ | async)" class="btn btn-success col-12 px-3 me-2" 
+            routerLink="/cars">
+                View Cars
+            </button>
+        </div>
+    </div>
+  </div>
+</div>
