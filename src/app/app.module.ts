@@ -18,6 +18,8 @@ import { employeeComponent } from './employee/employee.component';
 import { EmployeeRowComponent } from './employee/employee-row/employee-row.component';
 import { employeeListComponent } from './employee/employee-list/employee-list.component';
 import { EmployeeDetailsComponent } from './employee/employee-details/employee-details.component';
+import { NgxMasonryModule } from 'ngx-masonry';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { EmployeeDetailsComponent } from './employee/employee-details/employee-d
     AuthModule.forRoot({...environment.auth0,
       httpInterceptor: {
         allowedList: [`${environment.apiUri}/cars`],
-      },})
+      },}),
+    BrowserAnimationsModule,
+    [NgxMasonryModule]
   ],
   providers: [ {
     provide: HTTP_INTERCEPTORS,

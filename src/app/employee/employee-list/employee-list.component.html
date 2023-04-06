@@ -3,47 +3,24 @@
     <p><small class="text-muted">All Employees</small></p>
 </h1>
 <div class="container-fluid">
-    <div class="row align-items-start">
-        <div class="col gx-5 mb-5">
-            <ol class="list-group-flush p-3">
-                <li class="list-group-item bg-dark text-white p-3 justify-content-between align-items-start"  aria-current="true">
-                    <app-employee-row *ngFor="let e of employeeList"
-                    [employee]="e"
-                    (click)='clicked(e)'
-                    [class.text-info]="isSelected(e)"
-                    ></app-employee-row> 
-                </li>    
-            </ol>
+    <div class="row">
+        <div class="col-8">
+            <ngx-masonry>
+                    <div ngxMasonryItem class="masonry-item" *ngFor="let item of employeeList">
+                        <app-employee-row [employee]=item (click)='clicked(item)' [class.text-info]="isSelected(item)">
+                        </app-employee-row> 
+                    </div>
+              </ngx-masonry>
         </div>
-        <div class="col">
-            <div class="container-fluid">
-                <app-employee-details *ngIf="currentEmployee" [employee]="currentEmployee"></app-employee-details>
-            </div>
+        <div class="col-4">
+            <div class="col">
+                <div class="container-fluid">
+                    <app-employee-details *ngIf="currentEmployee" [employee]="currentEmployee"></app-employee-details>
+                </div>
         </div>
-      </div>  
-    <!-- <div class="container-fluid my-3 bg-dark p-3 align-left">
-        <div class="row">
-            <div class="col col-2">
-                 <!-- Create employee button -->
-                <!-- <button (click)="openAddEmployee()" *ngIf="!showEmployeeForm" 
-                class="btn btn-lg btn-primary">Add Employee</button>
-            </div>
-            <div class="col col-2"> -->
-                  <!-- Update car button -->
-                  <!-- <button (click)="openEditEmployee()" *ngIf="!showCarForm" [disabled]="!currentEmployee"
-                  class="btn btn-lg btn-primary">Edit Employee</button>
-             </div>
-            <div class="col col-2">
-                 <!-- Delete car button -->
-                <!--<button (click)="deleteCar()" *ngIf="!showCarForm" [disabled]="!currentCar"
-                class="btn btn-lg btn-danger">Delete Car</button>
-            </div> -->
-       <!--</div>
-    </div> --> 
+    </div>
 </div>
-<!-- <app-car-form *ngIf="showEmployeeForm" [employee]="currentEmployee" 
-    (employeeFormClose)="employeeFormClose($event)"
-    [employee]="currentEmployee"></app-employee-form> -->
+     
 
 
 

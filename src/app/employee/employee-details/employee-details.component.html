@@ -1,18 +1,10 @@
-<div class="employeed" style="width: 100%;">
-    <div class="employeed-header" ><h1>Employee Details: </h1></div>
+<div class="card" style="width: 20rem;">
     <img *ngIf=employee.profilePicture src="{{employee.profilePicture}}" class="employeed-img-top img-fluid" alt="Image of {{employee.firstName}}">
-    <div class="employeed-body">
-        <h2 class="employeed-title">
-           {{employee.firstName}}
-           <p>Id: <small class="text-muted">{{employee._id}}</small></p>
-        </h2>
-        <ul>
-            <li><b>First Name: </b> {{employee.firstName}}</li>
-            <li><b>Last Name: </b> {{employee.lastName}}</li>
-            <li><b>Email: </b> {{employee.email}}</li>
-            <li><b>Phone NUmber: </b> {{employee.phoneNumber}}</li>
-            <li><b>Address: </b> {{employee.address}}</li>
-            <li><b>Status: </b> {{employee.status}}</li>
-        </ul>
+    <div class="card-body">
+    <span class="badge bg-primary rounded-pill m-2" *ngif="employee.status">{{employee.status}}</span>
+    <span class="badge bg-danger rounded-pill m-2" *ngif="!employee.status">{{employee.status}}</span>
+      <h5 class="card-title">{{employee.firstName}} {{employee.lastName}}</h5>
+      <p class="card-text">{{employee.phoneNumber}}</p>
+      <a href="#" class="btn btn-primary" routerLink="/employees/{{employee._id}}">View Profile</a>
     </div>
-</div>
+  </div>
