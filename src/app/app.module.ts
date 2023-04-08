@@ -20,6 +20,7 @@ import { employeeListComponent } from './employee/employee-list/employee-list.co
 import { EmployeeDetailsComponent } from './employee/employee-details/employee-details.component';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EmployeeRowComponent,
     employeeListComponent,
     EmployeeDetailsComponent,
+    EmployeeProfileComponent,
     
   ],
   imports: [

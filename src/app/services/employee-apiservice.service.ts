@@ -11,6 +11,7 @@ import { Employee } from '../models/employee';
 export class EmployeeAPIService {
 
   constructor(private http: HttpClient) { }
+  
   private dataUri = `${environment.apiUri}/employees`;
   
   getEmployees(): Observable<Employee[]>
@@ -22,8 +23,7 @@ export class EmployeeAPIService {
       retry(3),
       catchError(this.handleError)
     );
-    // console.log('Dummy getCars called');
-    // return of(this.dummyBooksData);
+    
   }
 
    //taken from: https://angular.io/guide/http
@@ -69,4 +69,13 @@ export class EmployeeAPIService {
         catchError(this.handleError)
       );
   }
+
+   //DELETE
+  //  getEmployee(id: string): Observable<Employee> {
+  //   const url = `${this.dataUri}/${id}`; 
+  //   return this.http.get(url)
+  //     .pipe(
+  //       catchError(this.handleError)
+  //     );
+  // }
 }
