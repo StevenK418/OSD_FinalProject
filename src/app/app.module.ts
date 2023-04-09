@@ -11,7 +11,6 @@ import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/commo
 import { CarFormComponent } from './car/car-form/car-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
-import { AuthHttpInterceptor,AuthModule } from '@auth0/auth0-angular';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { employeeComponent } from './employee/employee.component';
@@ -21,6 +20,11 @@ import { EmployeeDetailsComponent } from './employee/employee-details/employee-d
 import { NgxMasonryModule } from 'ngx-masonry';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,10 @@ import { EmployeeProfileComponent } from './employee-profile/employee-profile.co
     employeeListComponent,
     EmployeeDetailsComponent,
     EmployeeProfileComponent,
+    SignInComponent,
+    SignUpComponent,
+    ForgotPasswordComponent,
+    VerifyEmailComponent,
     
   ],
   imports: [
@@ -44,18 +52,11 @@ import { EmployeeProfileComponent } from './employee-profile/employee-profile.co
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AuthModule.forRoot({...environment.auth0,
-      httpInterceptor: {
-        allowedList: [`${environment.apiUri}/cars`],
-      },}),
     BrowserAnimationsModule,
-    [NgxMasonryModule]
+    [NgxMasonryModule],
+    FormsModule
   ],
-  providers: [ {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthHttpInterceptor,
-    multi: true,
-  },],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

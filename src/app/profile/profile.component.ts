@@ -1,21 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
-import { map } from 'rxjs/internal/operators/map';
+
+import { IUser, CognitoService } from '../services/cognito.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
 
+  loading: boolean;
+  user: IUser;
 
-  user$ = this.auth.user$;
-  code$ = this.user$.pipe(map((user) => JSON.stringify(user, null)));
+  constructor(private cognitoService: CognitoService) {
+    this.loading = false;
+    this.user = {} as IUser;
+  }
 
-  constructor(public auth: AuthService) { }
+  public ngOnInit(): void {
+    this.cognitoService.getUser()
+    .then((user: any) => {
+      this.user = user.attributes;
+    });
+  }
 
-  ngOnInit(): void {
+  public update(): void {
+    this.loading = true;
+
+    this.cognitoService.updateUser(this.user)
+    .then(() => {
+      this.loading = false;
+    }).catch(() => {
+      this.loading = false;
+    });
   }
 
 }

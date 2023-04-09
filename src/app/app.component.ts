@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { Router } from '@angular/router';
+import { CognitoService } from './services/cognito.service';
+
 
 @Component({
   selector: 'app-root',
@@ -11,22 +13,25 @@ export class AppComponent {
   title = 'CA2-AngularClient';
   currentYear = new Date().getFullYear(); 
 
-  isAuthenticated$ = this.authService.isAuthenticated$
-  user$ = this.authService.user$;
-  constructor(private router: Router, public authService: AuthService) 
-  {
+  isAuthenticated: boolean;
 
+  constructor(private router: Router, private cognitoService: CognitoService) 
+  {
+    this.isAuthenticated = false;
   }
 
-  handleLogout() 
-  {
-    this.authService.logout()
+  public ngOnInit(): void {
+    this.cognitoService.isAuthenticated()
+    .then((success: boolean) => {
+      this.isAuthenticated = success;
+    });
   }
-  
-  handleLogin() {
-    this.authService.loginWithRedirect({appState: { target: '/cars',}})
+
+  public signOut(): void {
+    this.cognitoService.signOut()
+    .then(() => {
+      this.router.navigate(['/signIn']);
+    });
   }
-  handleSignUp() {
-    this.authService.loginWithRedirect({screen_hint:"signup"})
-  }
+
 }

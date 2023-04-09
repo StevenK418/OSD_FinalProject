@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { Router } from '@angular/router';
+import { CognitoService } from '../services/cognito.service';
 
 @Component({
   selector: 'app-home',
@@ -9,18 +10,24 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  isAuthenticated$ = this.authService.isAuthenticated$
-  user$ = this.authService.user$;
+  isAuthenticated: boolean;
 
-  constructor(public authService: AuthService) { }
-
-  ngOnInit(): void {
+  constructor(private router: Router, private cognitoService: CognitoService) 
+  {
+    this.isAuthenticated = false;
   }
 
-  handleLogin() {
-    this.authService.loginWithRedirect({appState: { target: '/cars',}})
+  public ngOnInit(): void {
+    this.cognitoService.isAuthenticated()
+    .then((success: boolean) => {
+      this.isAuthenticated = success;
+    });
   }
-  handleSignUp() {
-    this.authService.loginWithRedirect({screen_hint:"signup"})
+
+  public signOut(): void {
+    this.cognitoService.signOut()
+    .then(() => {
+      this.router.navigate(['/signIn']);
+    });
   }
 }

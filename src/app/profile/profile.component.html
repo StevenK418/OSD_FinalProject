@@ -1,86 +1,49 @@
-
-<h1>Profile</h1>
-<!-- Profile template code -->
-<section style="background-color: #eee;">
-    <div class="container py-5">
-      <div class="row">
-        <div class="col">
-          <nav aria-label="breadcrumb" class="bg-light p-3 mb-4">
-            <ol class="breadcrumb mb-0">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page"><a href="#">profile</a></li>
-            </ol>
-          </nav>
-        </div>
-      </div>
-      <div class="row" *ngIf="user$ | async as user">
-        <div class="col-lg-4">
-          <div class="card mb-4">
-            <div class="card-body text-center">
-              <img src="{{user.picture}}" alt="avatar"
-                class="rounded-circle img-fluid" style="width: 150px;">
-              <h5 class="my-3">{{user.name}}</h5>
-              <p class=" mb-1 text-success">Sales Agent</p>
-              <p class="mb-1">Nickname: <span class="text-muted">{{user.nickname}}</span></p>
-              <p class="mb-3">Last updated: <span class="text-muted">{{user.updated_at | date:'shortDate'}}</span></p>
-              <p class="mb-3">Logged in via: <span class="text-muted">{{user.sub}}</span></p>
-              <div class="d-flex justify-content-center mb-2">
-                <a href="mailto:{{user.email}}" type="button" class="btn btn-outline-primary ms-1">Message</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-8">
-          <div class="card mb-4">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Full Name</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{ user.name }}</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Email</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0"><a href="mailto:{{user.email}}">{{ user.email }}</a></p>
-                  <p class="text-muted mb-0">Verified: {{ user.email_verified }}</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Phone</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{ user.phone_number }}</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Mobile</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{ user.phone_number }}</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Address</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{ user.address }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+<div class="row justify-content-center my-5">
+  <div class="col-4">
+    <h1 class="display"> User Profile for: {{user.preferred_username}}</h1>
+    <div class="col mb-2">
+      <img src="{{user.picture}}" alt="Profile picture for {{user.email}}" class="img-thumbnail"/>
+    </div>
+    <div class="row">
+      <div class="col mb-2">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" id="email" name="email" #email="ngModel" [ngModel]="user.email" disabled class="form-control form-control-sm">
+        <a type="button" href="mailto:{{user.email}}" class="btn btn-sm btn-primary mt-3">Send Email</a>
       </div>
     </div>
-</section>
+    <div class="row">
+      <div class="col mb-2">
+        <label for="name" class="form-label">Name:</label>
+        <input type="text" id="name" name="name" #name="ngModel" [(ngModel)]="user.name" class="form-control form-control-sm">
+      </div>
+      <div class="col mb-2">
+        <label for="nickname" class="form-label">Nickname:</label>
+        <input type="text" id="nickname" name="nickname" #name="ngModel" [(ngModel)]="user.nickname" class="form-control form-control-sm">
+      </div>
+      <div class="col mb-2">
+        <label for="preferred_username" class="form-label">User Name:</label>
+        <input type="text" id="preferred_username" name="preferred_username" #name="ngModel" [(ngModel)]="user.preferred_username" class="form-control form-control-sm">
+      </div>
+    </div>
+    <div class="col mb-2">
+      <label for="phoneNumber" class="form-label">Phone Number:</label>
+      <input type="text" id="phoneNumber" name="phoneNumber" #phone_number="ngModel" [ngModel]="user.phone_number" class="form-control form-control-sm">
+    </div>
+    <div class="col mb-2">
+      <label for="address" class="form-label">Address:</label>
+      <input type="text" id="address" name="address" #address="ngModel" [ngModel]="user.address" class="form-control form-control-sm">
+    </div>
+    <div class="col mb-2">
+      <label for="picture" class="form-label">Picture:</label>
+      <input type="text" id="picture" name="address" #address="ngModel" [ngModel]="user.picture" class="form-control form-control-sm">
+    </div>
+    <div class="row">
+      <div class="col d-grid">
+        <button type="button" (click)="update()" class="btn btn-sm btn-dark" [disabled]="loading">
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="loading"></span>
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

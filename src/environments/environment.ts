@@ -4,14 +4,14 @@
 
 export const environment = {
   production: false,
-  apiUri : 'http://localhost:3000',
-  auth0:
-  {
-    domain: 'dev-17qplak4r5xiw65m.eu.auth0.com',
-    clientId: 'nZQzksOMNPjPDacAaK70IeK96I5nkzGc',
-    callback_URL: 'localhost:4200/callback'
+  apiUri : 'https://osdfinalprojectapi-production-f50f.up.railway.app',
+  cognito: {
+    userPoolId: 'eu-west-1_JNyFi55cX',
+    userPoolWebClientId: '2a4ppc4oi7gfu6ijsl2f2nudv6',
   }
-};
+}
+
+
 
 /*
  * For easier debugging in development mode, you can import the following file
