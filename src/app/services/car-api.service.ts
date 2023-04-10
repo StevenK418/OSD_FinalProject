@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of, throwError, retry, catchError } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { Car } from '../models/car';
+import { CarStore, CarState } from '../stores/car-store';
 
 @Injectable({
   providedIn: 'root'
@@ -10,20 +12,28 @@ import { Car } from '../models/car';
 
 export class CarAPIService {
 
-  constructor(private http: HttpClient) { }
+  http: HttpClient;
+  store: CarStore;
+
   private dataUri = `${environment.apiUri}/cars`;
-  
+
+  constructor(http: HttpClient, store: CarStore) 
+  { 
+    this.http = http;
+    this.store = store;
+  }
+
   getCars(): Observable<Car[]>
   {
     console.log("get Cars called" );
 
     return this.http.get<Car[]>(`${this.dataUri}`)
     .pipe(
-      retry(3),
-      catchError(this.handleError)
+      tap(cars=>this.store.loadCars(cars, true)
+      //retry(3)
+      //catchError(this.handleError)
+      )
     );
-    // console.log('Dummy getCars called');
-    // return of(this.dummyBooksData);
   }
 
    //taken from: https://angular.io/guide/http
@@ -47,6 +57,10 @@ export class CarAPIService {
   addNewCar(car: Car): Observable<Car> {
     return this.http.post<Car>(this.dataUri, car)
       .pipe(
+        tap(value => {
+          //Add to store
+          this.store.add([car])
+        }),
         catchError(this.handleError)
       )
   }
@@ -57,6 +71,9 @@ export class CarAPIService {
     let carURI: string = this.dataUri + '/' + id;
     return this.http.put<Car>(carURI, car)
       .pipe(
+        tap(result => {
+          this.store.update(id, car)
+        }),
         catchError(this.handleError)
       )
   }
@@ -66,11 +83,10 @@ export class CarAPIService {
     const url = `${this.dataUri}/${id}`; 
     return this.http.delete(url)
       .pipe(
+        tap(result => {
+          this.store.remove(id);
+        }),
         catchError(this.handleError)
       );
   }
-  
-
-
-
 }

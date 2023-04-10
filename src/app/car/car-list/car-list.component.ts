@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CarAPIService } from 'src/app/services/car-api.service';
 import { Car } from 'src/app/models/car';
+import { CarStore } from 'src/app/stores/car-store';
+import { CarState } from 'src/app/stores/car-store';
+import { Observable, Subscription, switchMap, filter } from 'rxjs';
+import { CarQuery } from 'src/app/stores/car.query';
 
 @Component({
   selector: 'app-car-list',
@@ -8,7 +12,18 @@ import { Car } from 'src/app/models/car';
   styleUrls: ['./car-list.component.css']
 })
 
-export class CarListComponent implements OnInit {
+export class CarListComponent implements OnInit, OnDestroy {
+
+
+  //Variables for state management
+  carToBeUpdated: Car | any;
+  isUpdateActivated = false;
+  listCarsSub: Subscription;
+  deleteCarSub: Subscription;
+  updateCarSub: Subscription;
+  cstate: CarState;
+
+  cars$: Observable<Car[]> = this.carQuery.selectAll();
 
   carList: Car[] = [];
   message: string = "";
@@ -17,10 +32,24 @@ export class CarListComponent implements OnInit {
 
   showCarForm: boolean = false;
 
-  constructor(private carService: CarAPIService) { }
+  constructor(private carService: CarAPIService, private carQuery:CarQuery) { }
 
   ngOnInit(): void 
   {
+    //Uses Stores
+    //  This is commented out as it appears to only bring back multiples 
+    //  of the first entry in the db and is unusable. 
+    // this.listCarsSub = this.carQuery.selectAreCarsLoaded$.pipe(
+    //     filter(areCarsLoaded => !areCarsLoaded),
+    //     switchMap(areCarsLoaded => {
+    //       if(!areCarsLoaded)
+    //       {
+    //         return this.carService.getCars();
+    //       }
+    //       else return '';
+    //     })
+    //   ).subscribe(result => {});
+
     this.carService.getCars().subscribe(
     {
       next: (value: Car[] )=> this.carList = value,
@@ -103,9 +132,6 @@ export class CarListComponent implements OnInit {
     
   }
 
- 
-
-
   //Display form
   openAddCar(): void 
   {
@@ -149,6 +175,25 @@ export class CarListComponent implements OnInit {
     {
       return car._id === this.currentCar._id;
     }
+  }
+
+  //OnDestroy Method
+  ngOnDestroy(): void 
+  {
+      if(this.listCarsSub)
+      {
+        this.listCarsSub.unsubscribe();
+      }
+
+      if(this.deleteCarSub)
+      {
+        this.deleteCarSub.unsubscribe();
+      }
+
+      if(this.updateCarSub)
+      {
+        this.updateCarSub.unsubscribe();
+      }
   }
 
 }
