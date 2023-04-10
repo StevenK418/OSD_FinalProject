@@ -13,7 +13,7 @@
             <a class="nav-link" *ngIf="isAuthenticated()" routerLink="/profile" routerLinkActive="active">Profile</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" *ngIf="isAuthenticated()" routerLink="/employees" routerLinkActive="active">Employees</a>
+            <a class="nav-link" *ngIf="isAdmin()" routerLink="/employees" routerLinkActive="active">Employees</a>
           </li>
         </ul>
 

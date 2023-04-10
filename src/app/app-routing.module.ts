@@ -11,31 +11,6 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
-// const routes: Routes = [
-//   {
-//     path: '',
-//     redirectTo: '/home',
-//     pathMatch: 'full',
-//   },
-//   {path: 'cars',component: CarListComponent},
-//   {path: 'employees', component: employeeListComponent},
-//   {
-//     path: 'profile',
-//     component: ProfileComponent,
-//   },
-//   {
-//     path: 'signIn',
-//     component: SignInComponent,
-//   },
-//   {
-//     path: 'signUp',
-//     component: SignUpComponent,
-//   },
-//   {
-//     path: '**',
-//     redirectTo: 'signIn',
-//   },
-// ];
 const routes: Routes = 
 [
   {path: '', component: HomeComponent},
