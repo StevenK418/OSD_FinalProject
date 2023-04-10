@@ -21,10 +21,10 @@
           <div class="container-fluid">
             <ul>
                 <li>
-                  <a class="nav-link" *ngIf="isAuthenticated()" routerLink="/profile" routerLinkActive="active">Profile</a>
+                  <a class="nav-link" *ngIf="isAdmin()" routerLink="/profile" routerLinkActive="active">Profile</a>
                 </li>
                 <li>
-                  <a class="nav-link" *ngIf="isAuthenticated()" routerLink="/employees" routerLinkActive="active">Employees</a>
+                  <a class="nav-link" *ngIf="isAdmin()" routerLink="/employees" routerLinkActive="active">Employees</a>
                 </li>
               </ul>
               <div class="container-fluid mx-5">
@@ -60,7 +60,7 @@
 <div class="container-fluid p-5">
   <!-- Display the current route's content -->
   <router-outlet></router-outlet>
-  <app-chat-window></app-chat-window>
+  <app-chat-window *ngIf="isAuthenticated()"></app-chat-window>
 </div>
 <footer class="footer fixed-bottom text-center p-3 bg-dark text-white">
   <small>&copy; {{currentYear}}  MyCarHireDb</small>

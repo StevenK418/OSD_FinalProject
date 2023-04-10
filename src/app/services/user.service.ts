@@ -6,7 +6,7 @@ import { IUser } from './cognito.service';
 })
 
 export class UserService {
-  public UserType:string;
+  public UserType: String;
   constructor() { }
 
   user:IUser;

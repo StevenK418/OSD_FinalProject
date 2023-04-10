@@ -18,6 +18,7 @@ export interface IUser {
   nickname: string;
   preferred_username:string;
   gender:string;
+  UserType: String;
 }
 
 @Injectable({
@@ -34,7 +35,7 @@ export class CognitoService {
 
     this.authenticationSubject = new BehaviorSubject<boolean>(false);
   }
-  
+
   public signUp(user: IUser): Promise<any> {
     return Auth.signUp({
       username: user.email,
@@ -64,7 +65,7 @@ export class CognitoService {
         // if it contains the word admin - then this admin user has access
         // to profile, create entry and update/delete
 
-        let usertype = user.attributes["custom:usertype"];
+        let usertype = user.attributes["custom:department"];
          if (usertype=="admin")
           this.userService.UserType="admin";
          else
