@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CarAPIService } from '../services/car-api.service';
 import {Car} from '../models/car';
 
-
 @Component({
   selector: 'app-car',
   templateUrl: './car.component.html',
@@ -30,4 +29,5 @@ export class CarComponent implements OnInit
     })
   }
 
+ 
 }

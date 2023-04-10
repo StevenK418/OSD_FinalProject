@@ -35,7 +35,7 @@
              </div>
             <div class="col col-2">
                  <!-- Delete car button -->
-                <button (click)="deleteCar()" *ngIf="!showCarForm" [disabled]="!currentCar"
+                <button (click)="deleteCar()" *ngIf="!showCarForm && isAdmin()" [disabled]="!currentCar"
                 class="btn btn-lg btn-danger">Delete Car</button>
             </div>
         </div>

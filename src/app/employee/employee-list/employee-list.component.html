@@ -2,24 +2,36 @@
     Employees
     <p><small class="text-muted">All Employees</small></p>
 </h1>
+  
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-8">
-            <ngx-masonry>
-                    <div ngxMasonryItem class="masonry-item" *ngFor="let item of employeeList">
-                        <app-employee-row [employee]=item (click)='clicked(item)' [class.text-info]="isSelected(item)">
-                        </app-employee-row> 
-                    </div>
-              </ngx-masonry>
+    <ngx-masonry>
+        <div ngxMasonryItem class="masonry-item" *ngFor="let item of employeeList">
+            <app-employee-row [employee]=item (click)='clicked(item)' [class.text-info]="isSelected(item)" data-bs-toggle="modal" data-bs-target="#myModal">
+            </app-employee-row> 
         </div>
-        <div class="col-4">
-            <div class="col">
-                <div class="container-fluid">
-                    <app-employee-details *ngIf="currentEmployee" [employee]="currentEmployee"></app-employee-details>
-                </div>
-        </div>
-    </div>
+    </ngx-masonry>
 </div>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Employee Details</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+            <app-employee-details *ngIf="currentEmployee" [employee]="currentEmployee"></app-employee-details>
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
      
 
 

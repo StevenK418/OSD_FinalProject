@@ -5,6 +5,7 @@ import { CarStore } from 'src/app/stores/car-store';
 import { CarState } from 'src/app/stores/car-store';
 import { Observable, Subscription, switchMap, filter } from 'rxjs';
 import { CarQuery } from 'src/app/stores/car.query';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-car-list',
@@ -32,7 +33,7 @@ export class CarListComponent implements OnInit, OnDestroy {
 
   showCarForm: boolean = false;
 
-  constructor(private carService: CarAPIService, private carQuery:CarQuery) { }
+  constructor(private carService: CarAPIService, private carQuery:CarQuery, public userService: UserService) { }
 
   ngOnInit(): void 
   {
@@ -195,5 +196,10 @@ export class CarListComponent implements OnInit, OnDestroy {
         this.updateCarSub.unsubscribe();
       }
   }
+
+  public isAdmin():boolean {
+    return this.userService.isAdmin();
+  }
+
 
 }

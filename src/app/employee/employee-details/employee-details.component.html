@@ -1,10 +1,14 @@
-<div class="card" style="width: 20rem;">
+<div class="container-fluid">
+  <div class="card" style="width: 20rem;">
     <img *ngIf=employee.profilePicture src="{{employee.profilePicture}}" class="employeed-img-top img-fluid" alt="Image of {{employee.firstName}}">
     <div class="card-body">
     <span class="badge bg-primary rounded-pill m-2" *ngif="employee.status">{{employee.status}}</span>
-    <span class="badge bg-danger rounded-pill m-2" *ngif="!employee.status">{{employee.status}}</span>
+    <span class="badge bg-danger rounded-pill m-2"  *ngif="!employee.status">{{employee.status}}</span>
       <h5 class="card-title">{{employee.firstName}} {{employee.lastName}}</h5>
       <p class="card-text">{{employee.phoneNumber}}</p>
+      <p class="card-text">{{employee.email}}</p>
+      <p class="card-text">{{employee.address}}</p>
       <a href="#" class="btn btn-primary" routerLink="/employees/{{employee._id}}">View Profile</a>
     </div>
   </div>
+</div>
