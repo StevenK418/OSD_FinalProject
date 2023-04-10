@@ -7,13 +7,13 @@
       <div class="collapse navbar-collapse" id="mynavbar">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link" *ngIf="{isAuthenticated}" routerLink="/cars" routerLinkActive="active">Cars</a>
+            <a class="nav-link" *ngIf="isAuthenticated()" routerLink="/cars" routerLinkActive="active">Cars</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" *ngIf="{isAuthenticated}" routerLink="/profile" routerLinkActive="active">Profile</a>
+            <a class="nav-link" *ngIf="isAuthenticated()" routerLink="/profile" routerLinkActive="active">Profile</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" *ngIf="{isAuthenticated}" routerLink="/employees" routerLinkActive="active">Employees</a>
+            <a class="nav-link" *ngIf="isAuthenticated()" routerLink="/employees" routerLinkActive="active">Employees</a>
           </li>
         </ul>
 
@@ -21,10 +21,10 @@
           <div class="container-fluid">
             <ul>
                 <li>
-                  <a class="nav-link" *ngIf="{isAuthenticated}" routerLink="/profile" routerLinkActive="active">Profile</a>
+                  <a class="nav-link" *ngIf="isAuthenticated()" routerLink="/profile" routerLinkActive="active">Profile</a>
                 </li>
                 <li>
-                  <a class="nav-link" *ngIf="{isAuthenticated}" routerLink="/employees" routerLinkActive="active">Employees</a>
+                  <a class="nav-link" *ngIf="isAuthenticated()" routerLink="/employees" routerLinkActive="active">Employees</a>
                 </li>
               </ul>
               <div class="container-fluid mx-5">
@@ -33,17 +33,17 @@
                       <!-- <div *ngIf="isAuthenticated">
                         <p *ngIf="user$ | async as user and isAuthenticated" class="text-white  m-5">Logged in: <!--<br>{{user.name}}</p>
                       </div> -->
-                       <button type="button" *ngIf="!{isAuthenticated}" routerLink="/signIn" routerLinkActive="active" class="btn btn-primary me-2 m-2" >
+                       <button type="button" *ngIf="!isAuthenticated()" routerLink="/signIn" routerLinkActive="active" class="btn btn-primary me-2 m-2" >
                         Login
                     </button>
                     <!-- <button type="button" *ngIf="!(isAuthenticated$ | async)" routerLink="/signin" class="btn btn-primary me-2 m-2" 
                     (click)=handleLogin()>
                         Login
                     </button> -->
-                    <button type="button" *ngIf="!{isAuthenticated}" routerLink="/signUp" routerLinkActive="active" class="btn btn-secondary me-2 m-2" >
+                    <button type="button" *ngIf="!isAuthenticated()" routerLink="/signUp" routerLinkActive="active" class="btn btn-secondary me-2 m-2" >
                         SignUp
                     </button>
-                    <button *ngIf="isAuthenticated"
+                    <button *ngIf="isAuthenticated()"
                     class="btn btn-outline-primary me-4 m-2"
                     (click)="signOut()">
                         Log Out

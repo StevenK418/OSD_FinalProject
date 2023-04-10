@@ -18,10 +18,10 @@ export class HomeComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.cognitoService.isAuthenticated()
-    .then((success: boolean) => {
-      this.isAuthenticated = success;
-    });
+    // this.cognitoService.isAuthenticated()
+    // .then((success: boolean) => {
+    //   this.isAuthenticated = success;
+    // });
   }
 
   public signOut(): void {
