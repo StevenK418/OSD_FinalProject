@@ -13,4 +13,11 @@ describe('EmployeeAPIServiceService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+
+    //TODO: TEST 1
+   //Test to see if we have employees in the db
+   it('should return more than one', () => {
+    expect(service.getEmployees()).toBeGreaterThan(0);
+  });
 });
