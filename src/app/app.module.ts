@@ -26,7 +26,6 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { FormsModule } from '@angular/forms';
 import { ChatWindowComponent } from './chat-window/chat-window.component';
-import { LogViewerComponent } from './log-viewer/log-viewer.component';
 
 @NgModule({
   declarations: [
@@ -47,8 +46,7 @@ import { LogViewerComponent } from './log-viewer/log-viewer.component';
     SignUpComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
-    ChatWindowComponent,
-    LogViewerComponent,
+    ChatWindowComponent
     
   ],
   imports: [
