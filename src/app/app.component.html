@@ -15,6 +15,9 @@
             <li class="nav-item">
             <a class="nav-link" *ngIf="isAuthenticated()" routerLink="/employees" routerLinkActive="active">Employees</a>
           </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" *ngIf="isAuthenticated()" routerLink="/logViewer" routerLinkActive="active">Logs</a>
+          </li> -->
         </ul>
 
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -26,6 +29,9 @@
                 <li>
                   <a class="nav-link" *ngIf="isAdmin()" routerLink="/employees" routerLinkActive="active">Employees</a>
                 </li>
+                <!-- <li>
+                  <a class="nav-link" *ngIf="isAdmin()" routerLink="/logViewer" routerLinkActive="active">Logs</a>
+                </li> -->
               </ul>
               <div class="container-fluid mx-5">
                 <div class="row">
