@@ -61,6 +61,27 @@ export class EmployeeAPIService {
       )
   }
 
+  
+
+  //Get an employee of a given ID
+  GetEmployee(id: string): Observable<Employee>
+  {
+    let employeeURI: string = this.dataUri + '/' + id;
+    console.log('Request sent: to' + employeeURI);
+    let result = this.http.get<Employee>(`${employeeURI}`)
+    .pipe(
+      retry(3),
+      catchError(this.handleError)
+    );
+
+    // let employee = result.subscribe((e) => {
+    //   console.log(e);
+    //   return e;
+    // });
+    console.log(result);
+    return result;
+  }
+
   //DELETE
   deleteEmployee(id: string): Observable<unknown> {
     const url = `${this.dataUri}/${id}`; 

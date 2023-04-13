@@ -46,7 +46,7 @@ import { ChatWindowComponent } from './chat-window/chat-window.component';
     SignUpComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
-    ChatWindowComponent,
+    ChatWindowComponent
     
   ],
   imports: [

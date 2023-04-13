@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { EmployeeAPIService } from '../services/employee-apiservice.service';
 import { Employee } from '../models/employee';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-employee-profile',
@@ -9,24 +10,26 @@ import { Employee } from '../models/employee';
 })
 export class EmployeeProfileComponent implements OnInit {
 
-  employee?: Employee;
+  //employee?: Employee;
   message: String='';
+  id: String | any;
 
-  constructor(private service:EmployeeAPIService) 
+  employee: Employee | any;
+
+  constructor(private service:EmployeeAPIService, private _Activatedroute:ActivatedRoute) 
   { 
-
+    this.id = this._Activatedroute.snapshot.paramMap.get("id"); 
   }
 
-
-  ngOnInit(): void 
+  ngOnInit()
   {
-    //TODO: This needs more work. 
-    // this.service.getEmployee(this.employee._id).subscribe(
-    // {
-    //     next: (value: Employee) => this.employee = value,
-    //     complete: () => console.log('employee service finished'),
-    //     error: (message) => this.message = message
-    // })
+    //Load in the employee and subscribe to the observable
+    this.service.GetEmployee(this.id).subscribe(
+    {
+      next: (value: Employee )=> this.employee = value,
+      complete: () => console.log('employee service finished'),
+      error: (mess) => this.message = mess
+    })
   }
 
 }

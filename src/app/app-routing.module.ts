@@ -10,6 +10,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
 
 const routes: Routes = 
 [
@@ -24,6 +25,11 @@ const routes: Routes =
   {
     path: 'signUp',
     component: SignUpComponent,
+  },
+  { path: 'employees/:id', component: EmployeeProfileComponent },
+  {
+    path: 'signIn',
+    component: SignInComponent,
   },
   {
     path: '**',
